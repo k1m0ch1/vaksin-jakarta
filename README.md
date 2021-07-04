@@ -1,8 +1,10 @@
 # vaksin api jakarta
 
-because API service vaksinasi-corona.jakarta.go.id is sht, so I just deploy this to my server
+because API service vaksinasi-corona.jakarta.go.id is sometime laggy, I made mirror API
 
-refference: https://twitter.com/mathdroid/status/1411712464916414467
+I deploy this at `https://vaksin-jakarta.yggdrasil.id/`
+
+data is included the vaccine location include with the schedule same with this https://twitter.com/mathdroid/status/1411712464916414467
 
 # requirements
 pip
