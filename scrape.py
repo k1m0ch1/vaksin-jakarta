@@ -5,8 +5,8 @@ from datetime import datetime
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes";
-jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal";
+faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes"
+jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal"
 waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu"
 nominatimEndpoint = "https://nominatim.openstreetmap.org/search.php"
 
