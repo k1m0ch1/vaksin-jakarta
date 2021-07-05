@@ -7,7 +7,7 @@ from requests.packages.urllib3.util.retry import Retry
 
 faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes";
 jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal";
-waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu?kode_lokasi_vaksinasi=1052&tgl_kuota_vaksinasi=2021-07-08"
+waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu"
 nominatimEndpoint = "https://nominatim.openstreetmap.org/search.php"
 
 s = requests.Session()
