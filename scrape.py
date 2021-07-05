@@ -40,8 +40,7 @@ for faskes in dataFaskes:
     })
 
     faskes['detail_lokasi'] = getLocation.json()
-
-dataFaskes['last_updated_at'] = datetime.now().isoformat()
+    faskes['last_updated_at'] = datetime.now().isoformat()
 
 file_object = open(f'./jadwal.json', 'w+')
 file_object.write(json.dumps(dataFaskes))
