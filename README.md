@@ -51,3 +51,7 @@ pm2
     ]
 }
 ```
+
+0.1.0 add the time
+0.2.0 add the `detail location`
+0.3.0 add the `last_updated_at`

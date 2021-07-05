@@ -10,7 +10,6 @@ jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tang
 waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu?kode_lokasi_vaksinasi=1052&tgl_kuota_vaksinasi=2021-07-08"
 nominatimEndpoint = "https://nominatim.openstreetmap.org/search.php"
 
-start = datetime.now()
 s = requests.Session()
 retries = Retry(total=30, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
 s.mount('http://', HTTPAdapter(max_retries=retries))
@@ -37,6 +36,7 @@ for faskes in dataFaskes:
     })
 
     faskes['detail_lokasi'] = getLocation.json()
+    faskes['last_updated_at'] = datetime.now().isoformat()
         
 
 file_object = open(f'./jadwal.json', 'w+')
