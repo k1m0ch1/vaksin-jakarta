@@ -5,15 +5,19 @@ from datetime import datetime
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes";
-jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal";
+faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes"
+jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal"
 waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu"
 nominatimEndpoint = "https://nominatim.openstreetmap.org/search.php"
+kuotaEndpoint = "https://jkt-vax-quota.vercel.app/api/kuota"
 AUTHORIZATION_HEADER = "Bearer 2|1mcB0aYZjD4manNttOKyt5nE3PquT96yIDQYxofq"
 
 s = requests.Session()
 retries = Retry(total=30, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
 s.mount('http://', HTTPAdapter(max_retries=retries))
+
+getKuota = s.get(kuotaEndpoint)
+dataKuota = getKuota.json()['data']
 
 response = s.get(faskesEndpoint, headers={'Authorization': AUTHORIZATION_HEADER}, timeout=2)
 
@@ -33,6 +37,17 @@ for faskes in dataFaskes:
             'tgl_kuota_vaksinasi': jadwal['id']
         }, headers={'Authorization': AUTHORIZATION_HEADER})
         jadwal['waktu'] = getWaktu.json()
+
+        for waktu in jadwal['waktu']:
+            keyKuota = f"{faskes['wilayah']}.{faskes['kecamatan']}.{faskes['kelurahan']}.{faskes['nama_lokasi_vaksinasi']}.{jadwal['id']}.{waktu['id']}"
+            if keyKuota in dataKuota:
+                waktu['kuota'] = {
+                    'totalKuota': dataKuota[keyKuota]['totalKuota'],
+                    'sisaKuota': dataKuota[keyKuota]['sisaKuota'],
+                    'jakiKuota': dataKuota[keyKuota]['jakiKuota'],
+                }
+            else:
+                waktu['kuota'] = {}
 
     getLocation = s.get(nominatimEndpoint, params= {
         'q': faskes['nama_lokasi_vaksinasi'],
