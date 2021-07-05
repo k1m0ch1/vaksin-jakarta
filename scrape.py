@@ -8,6 +8,7 @@ from requests.packages.urllib3.util.retry import Retry
 faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes";
 jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal";
 waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu?kode_lokasi_vaksinasi=1052&tgl_kuota_vaksinasi=2021-07-08"
+nominatimEndpoint = "https://nominatim.openstreetmap.org/search.php"
 
 start = datetime.now()
 s = requests.Session()
@@ -29,6 +30,13 @@ for faskes in dataFaskes:
             'tgl_kuota_vaksinasi': jadwal['id']
         })
         jadwal['waktu'] = getWaktu.json()
+
+    getLocation = s.get(nominatimEndpoint, params= {
+        'q': faskes['nama_lokasi_vaksinasi'],
+        'format': 'jsonv2'
+    })
+
+    faskes['detail_lokasi'] = getLocation.json()
         
 
 file_object = open(f'./jadwal.json', 'w+')
