@@ -7,6 +7,7 @@ from requests.packages.urllib3.util.retry import Retry
 
 faskesEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes";
 jadwalEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/tanggal";
+waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu?kode_lokasi_vaksinasi=1052&tgl_kuota_vaksinasi=2021-07-08"
 
 start = datetime.now()
 s = requests.Session()
@@ -22,6 +23,13 @@ for faskes in dataFaskes:
         'kode_lokasi_vaksinasi': faskes['kode_lokasi_vaksinasi']
     })
     faskes['jadwal'] = getJadwal.json()
+    for jadwal in faskes['jadwal']:
+        getWaktu = s.get(waktuEndpoint, params= {
+            'kode_lokasi_vaksinasi': jadwal['kode_lokasi_vaksinasi'],
+            'tgl_kuota_vaksinasi': jadwal['id']
+        })
+        jadwal['waktu'] = getWaktu.json()
+        
 
 file_object = open(f'./jadwal.json', 'w+')
 file_object.write(json.dumps(dataFaskes))
