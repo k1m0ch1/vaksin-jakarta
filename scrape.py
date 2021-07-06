@@ -22,7 +22,10 @@ s.mount('http://', HTTPAdapter(max_retries=retries))
 
 if KUOTA_INTEGERATION_ENABLED:
     getKuota = s.get(kuotaEndpoint)
-    dataKuota = getKuota.json()['data']
+    if getKuota.status_code != 200:
+        KUOTA_INTEGERATION_ENABLED = False
+    else:
+        dataKuota = getKuota.json()['data']
 
 response = s.get(faskesEndpoint, headers={'Authorization': AUTHORIZATION_HEADER}, timeout=2)
 
