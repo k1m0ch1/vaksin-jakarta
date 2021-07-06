@@ -14,7 +14,7 @@ waktuEndpoint = "https://vaksinasi-corona.jakarta.go.id/service/api/faskes/waktu
 nominatimEndpoint = "https://nominatim.openstreetmap.org/search.php"
 kuotaEndpoint = "https://jkt-vax-quota.vercel.app/api/kuota"
 AUTHORIZATION_HEADER = "Bearer 2|1mcB0aYZjD4manNttOKyt5nE3PquT96yIDQYxofq"
-KUOTA_INTEGERATION_ENABLED = _("KUOTA_INTEGERATION_ENABLED", False)
+KUOTA_INTEGERATION_ENABLED = _("KUOTA_INTEGERATION_ENABLED", True)
 
 s = requests.Session()
 retries = Retry(total=30, backoff_factor=1, status_forcelist=[ 502, 503, 504 ])
