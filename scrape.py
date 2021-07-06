@@ -57,6 +57,9 @@ for faskes in dataFaskes:
                     }
                 else:
                     waktu['kuota'] = {}
+        else:
+            for waktu in jadwal['waktu']:
+                waktu['kuota'] = {}
 
     getLocation = s.get(nominatimEndpoint, params= {
         'q': faskes['nama_lokasi_vaksinasi'],
