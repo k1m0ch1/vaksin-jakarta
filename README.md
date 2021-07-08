@@ -64,6 +64,7 @@ data is included the vaccine location include with the schedule same with this h
 - 0.2.0 add the `detail location`
 - 0.3.0 add the `last_updated_at`
 - 0.4.0 add the `kuota` ke inside the waktu, integrated with https://jkt-vax-quota.vercel.app/
+- 0.5.0 full integrate with https://jkt-vax-quota.vercel.app/api/kuota all the data from jaki and https://jkt-vax-quota.vercel.app/api/kuota now merged
 
 ## Todo
 - POST data to register
