@@ -65,7 +65,9 @@ data is included the vaccine location include with the schedule same with this h
 - 0.3.0 add the `last_updated_at`
 - 0.4.0 add the `kuota` ke inside the waktu, integrated with https://jkt-vax-quota.vercel.app/
 - 0.5.0 full integrate with https://jkt-vax-quota.vercel.app/api/kuota all the data from jaki and https://jkt-vax-quota.vercel.app/api/kuota now merged
+- 0.6.0 add `daily_archive` to store a data vax everyday
 
 ## Todo
 - POST data to register
 - how to check if the data is `ACTUALLY` registered
+- stream file instead of full buffer
