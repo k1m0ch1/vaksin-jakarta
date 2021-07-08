@@ -6,6 +6,8 @@ I deploy this at https://vaksin-jakarta.yggdrasil.id/ and for the frontend https
 
 data is included the vaccine location include with the schedule same with this https://twitter.com/mathdroid/status/1411712464916414467
 
+the data is actually change every 6 hour
+
 # requirements
 - pip
 - pipenv

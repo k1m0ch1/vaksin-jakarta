@@ -166,9 +166,10 @@ for key, value in tmp.items():
                 wKey = keyJadwal.index(jKey)
                 dataFaskes[iKey]['jadwal'][wKey]['waktu'].append(iWaktu)
 
+file_object = open(f'./daily_archive/'
+    f'{datetime.now().strftime("%Y-%m-%d")}-{int(datetime.now().hour/6)+1}.json', 'w+')
+file_object.write(json.dumps(dataFaskes))
 
 file_object = open(f'./jadwal.json', 'w+')
 file_object.write(json.dumps(dataFaskes))
-file_object = open(f'./daily_archive/'
-                   f'{datetime.now().strftime("%Y-%m-%d")}.json', 'w+')
-file_object.write(json.dumps(dataFaskes))
+
