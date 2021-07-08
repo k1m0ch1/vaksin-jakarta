@@ -139,7 +139,7 @@ for key, value in tmp.items():
     keyJadwal = []
     if key not in keyFaskes:
         getLocation = s.get(nominatimEndpoint, params={
-            'q': faskes['nama_lokasi_vaksinasi'],
+            'q': key,
             'format': 'jsonv2'
         })
 
@@ -165,14 +165,6 @@ for key, value in tmp.items():
             for iWaktu in jValue['waktu']:
                 wKey = keyJadwal.index(jKey)
                 dataFaskes[iKey]['jadwal'][wKey]['waktu'].append(iWaktu)
-
-        getLocation = s.get(nominatimEndpoint, params={
-            'q': dataFaskes[iKey]['nama_lokasi_vaksinasi'],
-            'format': 'jsonv2'
-        })
-
-        dataFaskes[iKey]['detail_lokasi'] = getLocation.json()
-        dataFaskes[iKey]['last_updated_at'] = datetime.now().isoformat()
 
 
 file_object = open(f'./jadwal.json', 'w+')
