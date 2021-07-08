@@ -68,6 +68,7 @@ the data is actually change every 6 hour
 - 0.4.0 add the `kuota` ke inside the waktu, integrated with https://jkt-vax-quota.vercel.app/
 - 0.5.0 full integrate with https://jkt-vax-quota.vercel.app/api/kuota all the data from jaki and https://jkt-vax-quota.vercel.app/api/kuota now merged
 - 0.6.0 add `daily_archive` to store a data vax everyday
+- 0.7.0 because the data will change every 6 hour, so the `archive` change with format `date-number.json` for example `2021-02-03-1.json` the `number` variable is 24 hour format divided by 6, round up and add one `int(datetime.now().hour/6)+1` it will be range from 1-4
 
 ## Todo
 - POST data to register
