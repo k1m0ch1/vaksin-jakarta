@@ -1,2 +1,5 @@
 jadwal.json
 jadwal*.json
+
+__pycache__
+__pycache__/*
