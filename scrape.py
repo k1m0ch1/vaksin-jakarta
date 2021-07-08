@@ -167,7 +167,7 @@ for key, value in tmp.items():
                 dataFaskes[iKey]['jadwal'][wKey]['waktu'].append(iWaktu)
 
         getLocation = s.get(nominatimEndpoint, params={
-            'q': faskes['nama_lokasi_vaksinasi'],
+            'q': dataFaskes[iKey]['nama_lokasi_vaksinasi'],
             'format': 'jsonv2'
         })
 
