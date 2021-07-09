@@ -74,27 +74,27 @@ for faskes in dataFaskes:
                         'sisaKuota': dataKuota[keyKuota]['sisaKuota'],
                         'jakiKuota': dataKuota[keyKuota]['jakiKuota'],
                     }
-                else:
-                    if namaLokasi not in keyFaskes:
-                        dataFaskes.append({
-                            "nama_lokasi_vaksinasi": namaLokasi,
-                            "wilayah": dataKuota[keyKuota]['wilayah'],
-                            "kecamatan": dataKuota[keyKuota]['kecamatan'],
-                            "kelurahan": dataKuota[keyKuota]['kelurahan'],
-                            "jadwal": [dataJadwal],
-                        })
-                        keyFaskes.append(namaLokasi)
-                        keyJadwal.append(dataKuota[keyKuota]['tanggalKuota'])
-                        keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
+                # else:
+                #     if namaLokasi not in keyFaskes:
+                #         dataFaskes.append({
+                #             "nama_lokasi_vaksinasi": namaLokasi,
+                #             "wilayah": dataKuota[keyKuota]['wilayah'],
+                #             "kecamatan": dataKuota[keyKuota]['kecamatan'],
+                #             "kelurahan": dataKuota[keyKuota]['kelurahan'],
+                #             "jadwal": [dataJadwal],
+                #         })
+                #         keyFaskes.append(namaLokasi)
+                #         keyJadwal.append(dataKuota[keyKuota]['tanggalKuota'])
+                #         keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
+                #     else:
+                #         if dataKuota[keyKuota]['tanggalKuota'] not in keyJadwal:
+                #             faskes['jadwal'].append(dataJadwal)
+                #             keyJadwal.append(dataKuota[keyKuota]['tanggalKuota'])
+                #             keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
 
-                    if dataKuota[keyKuota]['tanggalKuota'] not in keyJadwal:
-                        faskes['jadwal'].append(dataJadwal)
-                        keyJadwal.append(dataKuota[keyKuota]['tanggalKuota'])
-                        keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
-
-                    if dataKuota[keyKuota]['jamKuota'] not in keyWaktu:
-                        jadwal['waktu'].append(dataWaktu)
-                        keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
+                #         if dataKuota[keyKuota]['jamKuota'] not in keyWaktu:
+                #             jadwal['waktu'].append(dataWaktu)
+                #             keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
         else:
             for waktu in jadwal['waktu']:
                 waktu['kuota'] = {}
@@ -166,9 +166,9 @@ for key, value in tmp.items():
                 wKey = keyJadwal.index(jKey)
                 dataFaskes[iKey]['jadwal'][wKey]['waktu'].append(iWaktu)
 
-file_object = open(f'./jadwal.json', 'w+')
-file_object.write(json.dumps(dataFaskes))
+saveToJadwal = open(f'./jadwal.json', 'w+')
+saveToJadwal.write(json.dumps(dataFaskes))
 
-file_object = open(f'./daily_archive/'
+saveToArchive = open(f'./daily_archive/'
     f'{datetime.now().strftime("%Y-%m-%d")}-{int(datetime.now().hour/6)+1}.json', 'w+')
-file_object.write(json.dumps(dataFaskes))
+saveToArchive.write(json.dumps(dataFaskes))
