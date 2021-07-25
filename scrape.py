@@ -74,33 +74,13 @@ for faskes in dataFaskes:
                         'sisaKuota': dataKuota[keyKuota]['sisaKuota'],
                         'jakiKuota': dataKuota[keyKuota]['jakiKuota'],
                     }
-                # else:
-                #     if namaLokasi not in keyFaskes:
-                #         dataFaskes.append({
-                #             "nama_lokasi_vaksinasi": namaLokasi,
-                #             "wilayah": dataKuota[keyKuota]['wilayah'],
-                #             "kecamatan": dataKuota[keyKuota]['kecamatan'],
-                #             "kelurahan": dataKuota[keyKuota]['kelurahan'],
-                #             "jadwal": [dataJadwal],
-                #         })
-                #         keyFaskes.append(namaLokasi)
-                #         keyJadwal.append(dataKuota[keyKuota]['tanggalKuota'])
-                #         keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
-                #     else:
-                #         if dataKuota[keyKuota]['tanggalKuota'] not in keyJadwal:
-                #             faskes['jadwal'].append(dataJadwal)
-                #             keyJadwal.append(dataKuota[keyKuota]['tanggalKuota'])
-                #             keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
-
-                #         if dataKuota[keyKuota]['jamKuota'] not in keyWaktu:
-                #             jadwal['waktu'].append(dataWaktu)
-                #             keyWaktu.append(dataKuota[keyKuota]['jamKuota'])
         else:
             for waktu in jadwal['waktu']:
                 waktu['kuota'] = {}
 
+    getKotaName = faskes['wilayah'].split('KOTA ADM. ')[1] if len(faskes['wilayah'].split('KOTA ADM. ')) > 1 else faskes['wilayah']
     getLocation = s.get(nominatimEndpoint, params={
-        'q': faskes['nama_lokasi_vaksinasi'],
+        'q': f"{faskes['nama_lokasi_vaksinasi']} {getKotaName}",
         'format': 'jsonv2'
     })
 
